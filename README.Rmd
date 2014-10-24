@@ -1,0 +1,47 @@
+---
+title: "README.Rmd"
+output: html_document
+---
+
+The tidy data in the dfGalaxySAverages dataset, as produced by running the run_Analysis.R script, contain the personal averages for unique activities of the means and standard deviations of variables taken from smartphone measurements and observations collected by Smartlab.  A full description of the original data can be obtained at:
+
+<http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones>
+
+The raw data can be obtained at:
+
+<https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>
+
+<b> Raw Data </b>
+As the README.txt states from the original raw dataset linked above, the raw Smartlab data were taken from a group of 30 volunteers (aged 19-48 years) who each performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING), while wearing a Samsung Galaxy S II smartphone on their waist.  3-axial linear acceleration and 3-axial angular velocity measurements were captured at a constant rate of 50Hz using the phone's embedded accelerometer and gyroscope.   The experiments were video recorded to manually label the data.  70% of the volunteers were randomly selected for generating the training data and the other 30% comprised the test data.  Additional information can be found in the README.txt file from the .zip linked above.
+
+<b> Tidy Data </b>
+The steps taken to transform the raw data into tidy data are as follow:
+- replacing the activity ID column of integers with descriptive names of the actual activity (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) for both test and train datasets.
+- naming column headers for each variable in both the test and train datasets using descriptive names of the actual measurement (from the above linked .zip, see features.txt for a complete list of variables and features_info.txt for an in-depth explanation of the variable)
+- merge the test and train dataset
+- keep only the columns which are the standard deviations or means of the measured variables
+- group the dataset first by Subject ID and then by activity
+- take the average of each variable as grouped by each subject's unique activity:  for instance, take the average across all observed measurements of subject number one as he's walking downstairs, then as he's walking upstairs, then as he's walking, laying, sitting, and standing.  repeat for subject number two.
+- change all column headers to reflect the measurements are now averages of the variables per activity per person (subject)
+- print final tidy dataset, dfGalaxySAverages, to dfGalaxySAverages.txt.
+
+The final dataset communicates the averages of the mean and standard deviation of all unique variables, one per person (subject) per activity, as distilled from Smartlab's original data set.  The requirements for tidy data are met:  there is one observation per row (each row is an activity performed by a subject), each column is either the mean or the standard deviation of a variable as recorded by the smartphone's sensors, and each table records information of only one observational unit of analysis (subject 1's average mean tBodyAccJerk across the Z axis while standing is ...).  
+
+**************
+Files included in this dataset's repository:
+
+- 'Codebook.txt'
+- 'README.Rmd'
+
+Files generated after the script has run:
+
+- 'dfGalaxySAverages.txt'
+- /UCI HAR Dataset  (original raw data)
+- /Data (original .zip for raw data)
+
+**************
+Notes
+
+The original data set from Smartlab is credited to:
+
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
