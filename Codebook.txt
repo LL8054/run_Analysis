@@ -1,11 +1,12 @@
 Codebook for dfGalaxySAverages.txt database using run_Analysis.R
-Lawrence Lau, October 24, 2014
 
-The data contained in the dfGalaxySAverages dataset as produced by running the run_Analysis.R script are taken from observations and variables collected by Smartlab.  A full description of the original data can be obtained at:
+The final tiny dataset generated from running run_Analysis.R is dfGalaxySAverages.  The variables are the averages of either the mean or standard deviation of measurements of a subject's activities while wearing a Galaxy S II smartphone on their waist.  Any column that is not a mean or a standard deviation of a measurement has been dropped.  The measurements are taken from the smartphone's sensors.  A list of the measurements can be found in 'features.txt'.  The technical descriptions of the measurements can be found at 'features_info.txt'.  Follow the link below to download a .zip that contains both files plus the original raw data. (Credit for the original data set goes to [1])
 
-http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
-The raw data can be obtained at:
+The column names for dfGalaxySAverages remain true to the original data variable names except for the addition of the words "Average of ..." in recognition that the data have been manipulated to reflect the average of a number of observations for the same unique activity by the same person (subject).
 
-https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+The Subject IDs have been preserved (there were 30 subjects and each was assigned a factor ID between 1 to 30).  The activity labels have been replaced by their corresponding descriptive activity names (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) as specified in 'activity_labels.txt' (from the .zip file linked above).  
 
+
+[1]Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
