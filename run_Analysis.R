@@ -12,7 +12,7 @@
 if(!file.exists("./data")){dir.create("./data")}
 fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 temp <- tempfile()
-download.file(fileURL, temp, method = "curl")
+download.file(fileURL, "data/Dataset.zip", method = "curl")
 unlink(temp)
 unzip("data/Dataset.zip")
 

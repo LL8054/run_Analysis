@@ -3,7 +3,8 @@ title: "README.Rmd"
 output: html_document
 ---
 
-The tidy data in the dfGalaxySAverages dataset, as produced by running the run_Analysis.R script, contain the personal averages for unique activities of the means and standard deviations of variables taken from smartphone measurements and observations collected by Smartlab.  A full description of the original data can be obtained at:
+<b>Overview</b>
+The script run_Analysis.R downloads a raw data package (Dataset.zip), unzips the files into /UCI HAR Dataset, and then performs functions that result in a tidy data set, dfGalaxySAverages.  The tidy data in the dfGalaxySAverages dataset contain the personal averages for unique activities of the means and standard deviations of variables taken from smartphone measurements and observations collected by Smartlab.  A full description of the original data can be obtained at:
 
 <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones>
 
@@ -32,6 +33,7 @@ Files included in this dataset's repository:
 
 - 'Codebook.txt'
 - 'README.Rmd'
+- 'README.html'
 
 Files generated after the script has run:
 
