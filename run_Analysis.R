@@ -41,7 +41,7 @@ y_test$V1 <- gsub("4", "SITTING", y_test$V1)
 y_test$V1 <- gsub("5", "STANDING", y_test$V1)
 y_test$V1 <- gsub("6", "LAYING", y_test$V1) 
 names(y_test) <- c("Activity")
-names(subject_test) <- c("Subject ID")
+names(subject_test) <- c("Subject_ID")
 
 #specifies activities for train set and sets column names
 y_train$V1 <- gsub("1", "WALKING", y_train$V1)
@@ -51,7 +51,7 @@ y_train$V1 <- gsub("4", "SITTING", y_train$V1)
 y_train$V1 <- gsub("5", "STANDING", y_train$V1)
 y_train$V1 <- gsub("6", "LAYING", y_train$V1)
 names(y_train) <- c("Activity")                         ## Objective 3 Complete 
-names(subject_train) <- c("Subject ID") 
+names(subject_train) <- c("Subject_ID") 
 
 #merges test set into one train database
 Test <- cbind(subject_test, y_test, X_test)
@@ -60,16 +60,27 @@ Test <- cbind(subject_test, y_test, X_test)
 Train <- cbind(subject_train, y_train, X_train)  
 
 #merges Train and Test databases into one GalaxyS database
-GalaxyS <- rbind(Test, Train)                           ## Objective 1 Complete
+GalaxyS <- rbind(Test, Train)
+GalaxyS <- GalaxyS[order(GalaxyS[,1]),]  
+row.names(GalaxyS) <- NULL                              ## Objective 1 Complete
 
-
-
-
-
-
-
-
-
+#Keep only columns which are the Std Dev or Mean of measurements
+selectedCols <- intersect(grep("std()|mean()", colnames(GalaxyS)), grep("meanFreq()", 
+    colnames(GalaxyS), invert=TRUE))
+GalaxySTidy <- cbind(GalaxyS[1], GalaxyS[2], GalaxyS[,selectedCols])     ## Keeps only Std Dev and Mean cols
+GalaxySTidy <- tbl_df(GalaxySTidy)                                      
+GalaxySTidy <- arrange(GalaxySTidy, Subject_ID, Activity)   ## Sorts by Subject ID and then Activity.
+                                                            ##Objective 2 Complete
+group_byGalaxySTidy <- group_by(GalaxySTidy, Subject_ID, Activity)
+GalaxySAverages <- group_byGalaxySTidy %>% 
+    summarise_each(funs(mean))              
+a <- "Avg of"
+dfGalaxySAverages <- data.frame(GalaxySAverages)
+for (i in 3:ncol(dfGalaxySAverages)) {
+    names(dfGalaxySAverages)[i] <- paste(a,names(dfGalaxySAverages)[i])
+}
+## Objective 5 Complete
+write.table(dfGalaxySAverages, file="dfGalaxySAverages.txt", row.names=FALSE)
 
 
 
